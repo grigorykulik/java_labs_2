@@ -44,4 +44,17 @@ public class SwapTest {
         assertEquals(al.get(2), o3);
     }
 
+    @Test
+    @DisplayName("The result shall be null")
+    public void testWithEmptyArray() {
+        ArrayList<Object> listOne=new ArrayList<>();
+        assertEquals(Main.swap(listOne, 0, 1), null);
+    }
+
+    @Test
+    @DisplayName("The result shall be null")
+    public void testWithNull() {
+        ArrayList<Object> listOne=null;
+        assertEquals(Main.swap(listOne, 0, 1), null);
+    }
 }

@@ -21,19 +21,19 @@ public class Main {
 
 
     public static <T> ArrayList<T>  swap(ArrayList<T> arrayList, int i, int j) {
+        if (arrayList==null || arrayList.isEmpty()) return null;
+        else {
+            try {
+                T first = arrayList.get(i);
+                T second = arrayList.get(j);
 
-        try {
-            T first=arrayList.get(i);
-            T second=arrayList.get(j);
+                arrayList.set(i, second);
+                arrayList.set(j, first);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Illegal index!");
+            }
 
-            arrayList.set(i, second);
-            arrayList.set(j, first);
+            return arrayList;
         }
-
-        catch (IndexOutOfBoundsException e) {
-            System.out.println("Illegal index!");
-        }
-
-        return arrayList;
     }
 }
