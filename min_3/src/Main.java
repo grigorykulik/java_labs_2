@@ -6,6 +6,7 @@ public class Main {
         System.out.println(min3(-1, -2, -3));
     }
 
+    // The method we're required to implement
     public static int min3(int a, int b, int c) {
         int min=a;
 
