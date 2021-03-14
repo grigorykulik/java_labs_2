@@ -23,9 +23,7 @@ public class Main {
 
         if (s1.getSpeed()<0 || s2.getSpeed()<0 || s3.getSpeed()<0) {
             throw new NegativeSpeedException();
-        }
-
-        else {
+        } else {
             totalSpeed+=s1.getSpeed();
             totalSpeed+=s2.getSpeed();
             totalSpeed+=s3.getSpeed();
@@ -41,8 +39,12 @@ public class Main {
     public static int getMinimumSpeed(Spaceship s1, Spaceship s2, Spaceship s3) {
         int min=s1.getSpeed();
 
-        if (s2.getSpeed()<s1.getSpeed()) min=s2.getSpeed();
-        if (s3.getSpeed()<s2.getSpeed()) min=s2.getSpeed();
+        if (s2.getSpeed()<s1.getSpeed()) {
+            min=s2.getSpeed();
+        }
+        if (s3.getSpeed()<s2.getSpeed()) {
+            min=s2.getSpeed();
+        }
 
         return min;
     }
