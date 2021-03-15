@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
         int[] array={1, 2, 3, 4};
-        boolean s=false;
+        boolean s;
 
         System.out.println("Initial array: ");
         for (int i:array) {
@@ -36,9 +36,7 @@ public class Main {
 
             success=true;
             return success;
-        }
-
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             return success;
         }
     }
