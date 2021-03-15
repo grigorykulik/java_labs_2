@@ -1,6 +1,8 @@
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SumTest {
@@ -25,9 +27,17 @@ public class SumTest {
 
     @Test
     public void givenIntegerMaxValueAndAnyOtherNumberReturnsZero() {
-       int x=Integer.MAX_VALUE;
-       int y=1;
+        int x=Integer.MAX_VALUE;
+        int y=1;
 
-       assertEquals(s.summ(x, y), 0);
+        Exception e=assertThrows(ArithmeticException.class, () ->{
+            s.summ(x, y);
+        });
+
+        String expectedMessage="integer overflow";
+        String actualMessage=e.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
     }
 }

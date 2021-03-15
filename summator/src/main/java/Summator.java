@@ -9,14 +9,7 @@ public class Summator implements Calculator {
 
     }
 
-    public int summ(int x, int y) {
-        try {
+    public int summ  (int x, int y) throws ArithmeticException {
             return Math.addExact(x, y);
         }
-
-        catch (ArithmeticException e) {
-            Logger.getGlobal().info("Integer overflow");
-            return 0;
-        }
-    }
 }
