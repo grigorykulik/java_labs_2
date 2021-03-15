@@ -1,5 +1,4 @@
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +37,7 @@ public class MinTest {
     public void shouldThrowExceptionWhenGivenEmptyList() {
         List<Float> list=new ArrayList<>();
 
-        Exception e=assertThrows(IllegalArgumentException.class, ()->{
-            Main.getGenericMin(list,0, 5);
-        });
+        Exception e=assertThrows(IllegalArgumentException.class, ()-> Main.getGenericMin(list,0, 5));
 
         String expectedMessage = "Either array is null or empty or indices are out of bounds";
         assertTrue(e.getMessage().contains(expectedMessage));
@@ -49,11 +46,7 @@ public class MinTest {
 
     @Test
     public void shouldThrowExceptionWhenGivenNullArray() {
-        List<String> list=null;
-
-        Exception e=assertThrows(IllegalArgumentException.class, ()->{
-            Main.getGenericMin(list,0, 2);
-        });
+        Exception e=assertThrows(IllegalArgumentException.class, ()->Main.getGenericMin(null,0, 2));
 
         String expectedMessage = "Either array is null or empty or indices are out of bounds";
         assertTrue(e.getMessage().contains(expectedMessage));
@@ -67,14 +60,10 @@ public class MinTest {
         list.add(33);
         list.add(5);
 
-        Exception e1=assertThrows(IndexOutOfBoundsException.class, ()-> {
-            Main.getGenericMin(list, -1, 1);
-        });
+        Exception e1=assertThrows(IndexOutOfBoundsException.class, ()-> Main.getGenericMin(list, -1, 1));
         assertTrue(e1.getMessage().contains("Illegal indices have been passed as arguments."));
 
-        Exception e2=assertThrows(IndexOutOfBoundsException.class, ()-> {
-            Main.getGenericMin(list, 1, 3);
-        });
+        Exception e2=assertThrows(IndexOutOfBoundsException.class, ()-> Main.getGenericMin(list, 1, 3));
         assertTrue(e2.getMessage().contains("Illegal indices have been passed as arguments."));
 
     }
