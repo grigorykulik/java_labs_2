@@ -6,29 +6,25 @@ public class Main {
 
     }
 
-    public static <T extends Comparable> T getGenericMin(List<T> list, int a, int b) {
+    public static <T extends Comparable> T getGenericMin(List<T> list, int a, int b) throws IllegalArgumentException,
+            ArrayIndexOutOfBoundsException {
 
         T min;
 
         // Be consistent and return nulls or throw an exception?
-        if (list==null || list.isEmpty()) return null;
-        else {
-            try {
-                    min=list.get(a);
+        if (list==null || list.isEmpty()) {
+            throw new IllegalArgumentException("Either array is null or empty or indices are out of bounds");
+        } else if (a<0 || a>=list.size() || b<0 || b>=list.size()) {
+                throw new ArrayIndexOutOfBoundsException("Illegal indices have been passed as arguments.");
+            } else {
+                min=list.get(a);
 
-                    for (int i=a+1; i<b; i++) {
-                        if (min.compareTo(list.get(b))>0) min=list.get(i);
+                for (int i=a; i<b; i++) {
+                    if (min.compareTo(list.get(i))>0) {
+                        min=list.get(i);
                     }
+                }
             }
-
-            catch (IndexOutOfBoundsException e) {
-                Logger.getGlobal().info("Illegal indices passed as arguments");
-
-                // I know this is a bad practice to return nulls but I haven't come up with an appropriate
-                // solution so far
-                return null;
-            }
-        }
 
         return min;
     }
