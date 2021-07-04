@@ -1,10 +1,9 @@
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MinTest {
 
@@ -25,46 +24,48 @@ public class MinTest {
     public void shouldReturnMinDouble() {
         List<Double> list=new ArrayList<>();
 
-        list.add(10.25);
+        list.add(1000.25);
         list.add(180.0);
         list.add(4.0);
 
-        double actualResult=Main.getGenericMin(list, 1, 2);
+        double actualResult=Main.getGenericMin(list, 0, 2);
 
         assertEquals(actualResult, 180.0);
     }
 
     @Test
-    public void shouldReturnNullIfArrayIsEmpty() {
+    public void shouldThrowExceptionWhenGivenEmptyList() {
         List<Float> list=new ArrayList<>();
 
-        Float actualResult=Main.getGenericMin(list,0, 5);
+        Exception e=assertThrows(IllegalArgumentException.class, ()-> Main.getGenericMin(list,0, 5));
 
-        assertEquals(actualResult, null);
+        String expectedMessage = "Either array is null or empty or indices are out of bounds";
+        assertTrue(e.getMessage().contains(expectedMessage));
+
     }
 
     @Test
-    public void shouldReturnNullIfArrayIsNull() {
-        List<String> list=null;
+    public void shouldThrowExceptionWhenGivenNullArray() {
+        Exception e=assertThrows(IllegalArgumentException.class, ()->Main.getGenericMin(null,0, 2));
 
-        String actualResult=Main.getGenericMin(list, 0, 2);
-
-        assertEquals(actualResult, null);
+        String expectedMessage = "Either array is null or empty or indices are out of bounds";
+        assertTrue(e.getMessage().contains(expectedMessage));
     }
 
     @Test
-    public void shouldReturnNullIfIllegalIndices() {
+    public void shouldThrowExceptionWhenGivenIllegalIndices() {
         List<Integer> list=new ArrayList<>();
 
         list.add(99);
         list.add(33);
         list.add(5);
 
-        Integer actualResult=Main.getGenericMin(list, -1, 1);
-        assertEquals(actualResult, null);
+        Exception e1=assertThrows(IndexOutOfBoundsException.class, ()-> Main.getGenericMin(list, -1, 1));
+        assertTrue(e1.getMessage().contains("Illegal indices have been passed as arguments."));
 
-        Integer actualResult2=Main.getGenericMin(list, 1, 3);
-        assertEquals(actualResult2, null);
+        Exception e2=assertThrows(IndexOutOfBoundsException.class, ()-> Main.getGenericMin(list, 1, 3));
+        assertTrue(e2.getMessage().contains("Illegal indices have been passed as arguments."));
+
     }
 
     @Test
